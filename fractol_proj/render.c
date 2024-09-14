@@ -21,8 +21,8 @@ static void handle_pixel(int x,int y, t_fractal *fractal)
     z.x = 0;
     z.y = 0;
 
-    c.x = map(x,-2, +2, WIDTH) + fractal->shift_x;
-    c.y = map(y,+2, -2, HEIGHT) + fractal->shift_y;
+    c.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+    c.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
     
     while(i < fractal->iteration_def)
     {   

@@ -14,17 +14,32 @@ int key_handler(int keysym, t_fractal *fractal)
     if(keysym == 53)
         close_handler(fractal);
     else if(keysym == 126) //Up Key
-        fractal->shift_y -= 0.5;
+        fractal->shift_y += 0.1;
     else if(keysym == 125) //Down Key
-        fractal->shift_y += 0.5;
+        fractal->shift_y -= 0.1;
     else if(keysym == 123) //Left key
-        fractal->shift_x += 0.5;
+        fractal->shift_x -= 0.1;
     else if(keysym == 124) //Right Key
-        fractal->shift_x -= 0.5;
+        fractal->shift_x += 0.1;
     else if(keysym == 24) //Plus Key
-        fractal->iteration_def += 10;
+        fractal->iteration_def += 2;
     else if(keysym == 27) //Minus Key
-        fractal->iteration_def -= 10;
+        fractal->iteration_def -= 2;
+    fractal_render(fractal);
+    return 0;
+}
+
+int mouse_handler(int button, int x, int y, t_fractal *fractal)
+{
+    // printf("%d\n",button);
+    if(button == 4)
+    {
+        fractal->zoom *= 0.90;
+    } // zoom out;
+    else if(button == 5)
+    {
+        fractal->zoom *= 1.10;
+    } // zoom in;
     fractal_render(fractal);
     return 0;
 }
