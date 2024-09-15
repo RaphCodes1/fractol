@@ -15,11 +15,11 @@ all: $(NAME)
 
 #add C FLAGS AFTER
 $(NAME): $(OBJS) $(MINILIBX)
-	$(CC) $^ $(MLX_FLAGS) -o $@ 
+	$(CC) $(CFLAGS) $^ $(MLX_FLAGS) -o $@ 
 
 #add C FLAGS AFTER
 %.o:%.c
-	$(CC) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	$(RM) $(OBJS) 

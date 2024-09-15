@@ -68,10 +68,19 @@ typedef struct s_fractal
     double shift_x;
     double shift_y;
     double zoom;
+    double julia_x;
+    double julia_y;
+
+
+
+
+    int x_mouse;
+    int y_mouse;
 }   t_fractal;
 
 int ft_strncmp(char *s1, char *s2, int len);
 void putstr_fd(char *s, int fd);
+double string_to_double(char *s);
 
 void fractal_init(t_fractal *fractal);
 
@@ -84,6 +93,7 @@ t_complex square_complex(t_complex z);
 int key_handler(int keysym, t_fractal *fractal);
 int mouse_handler(int button, int x, int y, t_fractal *fractal);
 int close_handler(t_fractal *fractal);
+int julia_track(int x, int y, t_fractal *fractal);
 
 
 #endif

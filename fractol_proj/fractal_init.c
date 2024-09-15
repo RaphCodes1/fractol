@@ -14,16 +14,20 @@ static void data_init(t_fractal *fractal)
     fractal->shift_x = 0.0;
     fractal->shift_y = 0.0;
     fractal->zoom = 1.0;
+    fractal->x_mouse = 0;
+    fractal->y_mouse = 0;
 }
 
 static void events_init(t_fractal *fractal)
 {   
     //KeyPress
     mlx_hook(fractal->mlx_win,02,(1L<<0),key_handler,fractal);
-    //ButtonPress
+    //ButtonPress //Mouse
     mlx_hook(fractal->mlx_win,04,(1L<<2),mouse_handler,fractal);
     //DestroyNotify
     mlx_hook(fractal->mlx_win,17,(1L<<17),close_handler,fractal);
+    //For Julia
+    mlx_hook(fractal->mlx_win,06,(1L<<06),julia_track,fractal);
 }
 void fractal_init(t_fractal *fractal)
 {

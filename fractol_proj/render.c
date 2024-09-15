@@ -10,6 +10,20 @@ static void my_pixel_put(int x, int y, t_img *img, int color)
     *(unsigned int *)(img->pixel_str + offset) = color;
 }
 
+static void what_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
+{
+    if(!ft_strncmp(fractal->name,"julia",5))
+    {   
+        c->x = fractal->julia_x;
+        c->y = fractal->julia_y;
+    }
+    else
+    {
+        c->x = z->x;
+        c->y = z->y;
+    }
+}
+
 static void handle_pixel(int x,int y, t_fractal *fractal)
 {
     t_complex z;
@@ -18,11 +32,10 @@ static void handle_pixel(int x,int y, t_fractal *fractal)
     int color;
 
     i = 0;
-    z.x = 0;
-    z.y = 0;
 
-    c.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-    c.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+    z.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+    z.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+    what_fractal(&z,&c, fractal);
     
     while(i < fractal->iteration_def)
     {   
@@ -36,7 +49,8 @@ static void handle_pixel(int x,int y, t_fractal *fractal)
         }
         i++;
     }
-    my_pixel_put(x, y, &fractal->img, BLACK );
+    my_pixel_put(x, y, &fractal->img, WHITE);
+    
 }
 void fractal_render(t_fractal *fractal)
 {
