@@ -10,7 +10,6 @@ int close_handler(t_fractal *fractal)
 
 int key_handler(int keysym, t_fractal *fractal)
 {   
-    // printf("%d\n",keysym);
     if(keysym == 53)
         close_handler(fractal);
     else if(keysym == 126) //Up Key
@@ -25,6 +24,14 @@ int key_handler(int keysym, t_fractal *fractal)
         fractal->iteration_def += 2;
     else if(keysym == 27) //Minus Key
         fractal->iteration_def -= 2;
+    else if(keysym == 15)
+    {
+        fractal->shift_x = 0.0;
+        fractal->shift_y = 0.0;
+        fractal->nums.x = map(400, -2, +2, WIDTH);
+        fractal->nums.y = map(400, -2, +2, HEIGHT);
+        fractal->zoom = 1.0;
+    }
     fractal_render(fractal);
     return 0;
 }

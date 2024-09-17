@@ -36,20 +36,19 @@ static void handle_pixel(int x,int y, t_fractal *fractal)
     z.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
     z.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
     what_fractal(&z,&c, fractal);
-    
     while(i < fractal->iteration_def)
     {   
         //formula z = z^2 + c
-        z = sum_complex(square_complex(z),c);
+        z = sum_complex(square_complex(z,fractal->name),c);
         if((z.x * z.x) + (z.y * z.y) > fractal->esc_value)
         {   
-            color = map(i, BLACK, WHITE, fractal->iteration_def);
+            color = map(i, BLACK, FLUORESCENT_PURPLE , fractal->iteration_def);
             my_pixel_put(x, y, &fractal->img, color);
             return ;
         }
         i++;
     }
-    my_pixel_put(x, y, &fractal->img, WHITE);
+    my_pixel_put(x, y, &fractal->img, BLACK);
     
 }
 void fractal_render(t_fractal *fractal)

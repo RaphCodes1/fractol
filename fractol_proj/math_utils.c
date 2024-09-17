@@ -15,12 +15,25 @@ t_complex sum_complex(t_complex z1, t_complex z2)
     return (result);
 }
 
-t_complex square_complex(t_complex z)
+t_complex square_complex(t_complex z, char *s)
 {
+    double x_holder;
+    double y_holder;
     t_complex result;
     
-    result.x = (z.x * z.x) - (z.y * z.y);
-    result.y = 2 * z.x * z.y;
+    x_holder = (z.x * z.x) - (z.y * z.y);
+    y_holder = 2 * z.x * z.y;
+
+    if(!ft_strncmp(s,"burning ship",12))
+    {
+        if(x_holder < 0)
+            x_holder *= -1;
+        if(y_holder < 0)
+            y_holder *= -1;
+    }
+
+    result.x = x_holder;
+    result.y = y_holder;
     return (result);
 }
 

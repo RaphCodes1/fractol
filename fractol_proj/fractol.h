@@ -7,7 +7,7 @@
 # include <stdlib.h>
 # include "../minilibx/mlx.h"
 
-# define ERROR_MSG "Please enter: \n\" ./fractol mandelbrot \" \nor \n\" ./fractol julia <num1> <num2> \" \n"
+# define ERROR_MSG "Please enter: \n\" ./fractol mandelbrot \"\nor\n\" ./fractol julia <num1> <num2> \" \n or \n ./fractol \"burning ship\" \n"
 # define WIDTH 800
 # define HEIGHT 800
 
@@ -63,6 +63,8 @@ typedef struct s_fractal
     
     //hooks member variable
     t_img img;
+    t_complex nums;
+
     double esc_value; // hypotenuse
     int iteration_def;
     double shift_x;
@@ -88,7 +90,7 @@ void fractal_render(t_fractal *fractal);
 double map(double unscaled_num, double new_min, double new_max, 
             double old_max);
 t_complex sum_complex(t_complex z1, t_complex z2);
-t_complex square_complex(t_complex z);
+t_complex square_complex(t_complex z, char *s);
 
 int key_handler(int keysym, t_fractal *fractal);
 int mouse_handler(int button, int x, int y, t_fractal *fractal);
