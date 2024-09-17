@@ -24,6 +24,21 @@ static void what_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
     }
 }
 
+static double map_out(int val, char *s, char coord)
+{   
+    double holder;
+    if(coord == 'y')
+    {
+        if(!ft_strncmp(s,"burning ship",12))
+            holder = map(val, -2, +2, HEIGHT);
+        else
+            holder = map(val, -2, +2, HEIGHT);
+    }
+    else
+        holder = map(val, -2, +2, WIDTH);
+    return (holder);
+}
+
 static void handle_pixel(int x,int y, t_fractal *fractal)
 {
     t_complex z;
@@ -32,9 +47,8 @@ static void handle_pixel(int x,int y, t_fractal *fractal)
     int color;
 
     i = 0;
-
-    z.x = (map(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-    z.y = (map(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+    z.x = (map_out(x,fractal->name,'x') * fractal->zoom) + fractal->shift_x;
+    z.y = (map_out(y,fractal->name,'y') * fractal->zoom) + fractal->shift_y;
     what_fractal(&z,&c, fractal);
     while(i < fractal->iteration_def)
     {   
@@ -49,8 +63,8 @@ static void handle_pixel(int x,int y, t_fractal *fractal)
         i++;
     }
     my_pixel_put(x, y, &fractal->img, BLACK);
-    
 }
+
 void fractal_render(t_fractal *fractal)
 {
     int x;
