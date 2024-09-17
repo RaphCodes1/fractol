@@ -27,7 +27,7 @@ t_complex square_complex(t_complex z, char *s)
     if(!ft_strncmp(s,"burning ship",12))
     {
         if(x_holder < 0)
-            x_holder *= -1;
+            x_holder  *= -1;
         if(y_holder < 0)
             y_holder *= -1;
     }

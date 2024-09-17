@@ -43,15 +43,35 @@ int mouse_handler(int button,int x, int y, t_fractal *fractal)
     // double zoom_y;
 
     mlx_mouse_get_pos(fractal->mlx_win,&fractal->x_mouse,&fractal->y_mouse);
+    // mlx_mouse_get_pos(fractal->mlx_win, &x , &y);
     printf("x mouse: %d, y mouse: %d\n",fractal->x_mouse, fractal->y_mouse);
     x = x * 1;
     y = y * 1;
+    double x_m = (map(fractal->x_mouse, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_x;
+    double y_m = (map(fractal->y_mouse, -2, 2, HEIGHT) * fractal->zoom) + fractal->shift_y;
     if(button == 4)
         fractal->zoom *= 0.90;
     else if(button == 5)
         fractal->zoom *= 1.10;
-    // fractal->shift_x = ((map(fractal->x_mouse, -2, 2,WIDTH) * fractal->zoom) + fractal->nums.x);
-    // fractal->shift_y = ((map(fractal->y_mouse, -2, 2,HEIGHT) * fractal->zoom) + fractal->nums.y);
+    else if (button == 1) // left_click
+    {
+        fractal->zoom /= 4;
+    }
+    else if (button == 2) // right_click
+    {
+        fractal->zoom *= 4;
+    }
+    double new_x = (map(fractal->x_mouse, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_x;
+    double new_y = (map(fractal->y_mouse, -2, 2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+
+    printf("x_m = %f, y_m = %f\n", x_m, y_m);
+    printf("%f, %f\n", new_x, new_y);
+    // fractal->nums.x = ((map(fractal->x_mouse, -2, 2,WIDTH) * fractal->zoom) + fractal->shift_x);
+    // fractal->nums.y = ((map(fractal->y_mouse, -2, 2,HEIGHT) * fractal->zoom) + fractal->shift_y);
+
+    // printf("%d\n", button);
+    fractal->shift_x += x_m - new_x;
+    fractal->shift_y += y_m - new_y;
     fractal_render(fractal);
     return 0;
 }
