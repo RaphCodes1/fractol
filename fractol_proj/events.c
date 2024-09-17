@@ -39,18 +39,19 @@ int key_handler(int keysym, t_fractal *fractal)
 int mouse_handler(int button,int x, int y, t_fractal *fractal)
 {
     //get mouse coordinates 
-    // mlx_mouse_get_pos(fractal->mlx_win,&fractal->x_mouse,&fractal->y_mouse);
-    // printf("x mouse: %d, y mouse: %d\n",fractal->x_mouse, fractal->y_mouse);
+    // double zoom_x;
+    // double zoom_y;
+
+    mlx_mouse_get_pos(fractal->mlx_win,&fractal->x_mouse,&fractal->y_mouse);
+    printf("x mouse: %d, y mouse: %d\n",fractal->x_mouse, fractal->y_mouse);
     x = x * 1;
     y = y * 1;
     if(button == 4)
-    {
         fractal->zoom *= 0.90;
-    } // zoom out;
     else if(button == 5)
-    {
         fractal->zoom *= 1.10;
-    } // zoom in;
+    // fractal->shift_x = ((map(fractal->x_mouse, -2, 2,WIDTH) * fractal->zoom) + fractal->nums.x);
+    // fractal->shift_y = ((map(fractal->y_mouse, -2, 2,HEIGHT) * fractal->zoom) + fractal->nums.y);
     fractal_render(fractal);
     return 0;
 }
