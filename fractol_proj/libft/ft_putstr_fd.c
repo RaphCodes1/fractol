@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rcreer <rcreer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/18 17:19:56 by rcreer            #+#    #+#             */
+/*   Updated: 2024/09/18 17:20:16 by rcreer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fractol.h"
 
-void putstr_fd(char *s, int fd)
+void	putstr_fd(char *s, int fd)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if(!s || fd < 0 || s[i] == '\0')
-        return ;
-    while(s[i])
-        write(fd,&s[i++],1);
+	i = 0;
+	if (!s || fd < 0 || s[i] == '\0')
+		return ;
+	while (s[i])
+		write(fd, &s[i++], 1);
 }
