@@ -6,7 +6,7 @@
 /*   By: rcreer <rcreer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:17:19 by rcreer            #+#    #+#             */
-/*   Updated: 2024/09/18 17:17:27 by rcreer           ###   ########.fr       */
+/*   Updated: 2024/09/18 21:28:32 by rcreer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_complex	square_complex(t_complex z, char *s)
 
 	x_holder = (z.x * z.x) - (z.y * z.y);
 	y_holder = 2 * z.x * z.y;
-	if (!ft_strncmp(s, "burning ship", 12))
+	if (!ft_strncmp(s, "buffalo", 8))
 	{
 		if (x_holder < 0)
 			x_holder *= -1;

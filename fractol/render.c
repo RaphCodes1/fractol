@@ -6,7 +6,7 @@
 /*   By: rcreer <rcreer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:14:07 by rcreer            #+#    #+#             */
-/*   Updated: 2024/09/18 16:14:25 by rcreer           ###   ########.fr       */
+/*   Updated: 2024/09/18 21:27:57 by rcreer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static double	map_out(int val, char *s, char coord)
 
 	if (coord == 'y')
 	{
-		if (!ft_strncmp(s, "burning ship", 12))
+		if (!ft_strncmp(s, "buffalo", 8))
 			holder = map(val, -2, +2, HEIGHT);
 		else
 			holder = map(val, -2, +2, HEIGHT);
